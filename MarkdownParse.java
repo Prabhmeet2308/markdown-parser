@@ -29,11 +29,18 @@ public class MarkdownParse {
             if(closeParen==-1){
                 break;
             }
-            
+        
+            String link=markdown.substring (openParen + 1, closeParen);
+            if(link.contains ("[") || link.contains ("]") || link.contains("{") ||
+                link.contains("}") || link.contains("|") ||
+                link.contains("\\") || link.contains("~") ||
+                link.contains("^") || link.contains("*")) {
+                    break;}
+
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
-        }
 
+        }
         return toReturn;
     }
 
