@@ -1,1 +1,1 @@
-[an invalid link](www.invalid character[]{}!~|)
+[an invalid link](www.invalidcharacter[]{}!~|)
