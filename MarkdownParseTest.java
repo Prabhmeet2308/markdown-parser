@@ -14,7 +14,7 @@ public class MarkdownParseTest {
         assertEquals(1+1, 2);
     }
 
-    @Test
+    /*@Test
     public void getLinksTestone() throws IOException { 
         Path fileName = Path.of(
         "C:/Users/santi/Documents/GitHub/markdown-parser/test-file.md");
@@ -43,5 +43,5 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(content);
         List<String> expected = List.of("testing.com");
         assertEquals(expected, links);
-    }
+    }*/
 }
