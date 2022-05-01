@@ -49,8 +49,13 @@ public class MarkdownParse {
         if(args.length>0){
         Path fileName = Path.of(args[0]);
         String content = Files.readString(fileName);
+        if(content.length()>0){
         ArrayList<String> links = getLinks(content);
 	    System.out.println(links);
+        }
+        else{
+            System.out.println("Provided file is an empty file");
+        }
         }
         else{
             System.out.println("Please provide file as input");
