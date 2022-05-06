@@ -48,6 +48,7 @@ public class MarkdownParse {
     public static void main(String[] args) throws IOException {
         if(args.length>0){
         Path fileName = Path.of(args[0]);
+        System.out.println(fileName);
         String content = Files.readString(fileName);
         if(content.length()>0){
         ArrayList<String> links = getLinks(content);
