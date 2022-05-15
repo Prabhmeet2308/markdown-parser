@@ -1,8 +1,5 @@
-[learn to code](https://github.com
+[a]  (b.com)
 
+![image description](an-image.jpeg)
 
-Added another line to myfile.md
-Added another line to myfile.md
-Added another line to myfile.md
-
-
+[link content](a-link.html)
