@@ -20,29 +20,21 @@ public class MarkdownParseTest {
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
         List<String> expected = List.of("https://something.com",
-             "some-thing.html");
+             "some-page.html");
         assertEquals(expected, links);
     }
 
-    @Test
-    public void getLinksTesttwo() throws IOException { 
-        Path fileName = Path.of( "test-file.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = MarkdownParse.getLinks(content);
-        List<String> expected = List.of("https://something.com",
-             "some-thing.html");
-        assertEquals(expected, links);
-    }
+    
 
     @Test
     public void getLinksTestthree() throws IOException { 
-        Path fileName = Path.of("test-file.md");
+        Path fileName = Path.of("myfile.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
-        List<String> expected = List.of("https://something.com",
-             "some-thing.html");
+        List<String> expected = List.of("(an-image.jpeg","a-link.html");
         assertEquals(expected, links);
     }
+
     @Test
     public void getLinksSnippetOne() throws IOException { 
         Path fileName = Path.of("snippet-1.md");
