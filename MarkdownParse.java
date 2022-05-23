@@ -9,59 +9,44 @@ public class MarkdownParse {
 
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
-        // find the next [, then find the ], then find the (, then read link upto next )
+        // find the next [, then find the ], then find the
+        //  (, then read link up to next )
         int currentIndex = 0;
-        
         while(currentIndex < markdown.length()) {
+            if(currentIndex == -1) break;
             int openBracket = markdown.indexOf("[", currentIndex);
-            if(openBracket==-1){
-                break;
-            }
+            if(openBracket == -1) break;
             int closeBracket = markdown.indexOf("]", openBracket);
-            if(closeBracket==-1){
-                break;
-            }
-            int openParen = markdown.indexOf("(", currentIndex);
-            if(openParen==-1){
-                break;
-            }
+            if(closeBracket == -1) break;
+            int openParen = markdown.indexOf("(", closeBracket);
+            if(openParen == -1) break;
             int closeParen = markdown.indexOf(")", openParen);
-            if(closeParen==-1){
-                break;
-            }
-        
-            String link=markdown.substring (openParen + 1, closeParen);
-            if(link.contains ("[") || link.contains ("]") || link.contains("{") ||
-                link.contains("}") || link.contains("|") ||
-                link.contains("\\") || link.contains("~") ||
-                link.contains("^") || link.contains("*")) {
-                    break;}
-
+            if(closeParen == -1) break; 
+            if (closeBracket + 1 != openParen) { return toReturn; }
+            // Can't have there characters
+            // "{", "}", "|", "\", "^", "~", "[", "]", and "`"
+            String link = markdown.substring(openParen + 1, closeParen);
+            if(link.contains("[") || link.contains("]") ||
+                link.contains("{") || link.contains("}") || 
+                link.contains("|") || link.contains("\\") || 
+                link.contains("~") || link.contains("^") || 
+                link.contains("`")) break;
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
-
         }
+
         return toReturn;
     }
 
 
     public static void main(String[] args) throws IOException {
-
-        if(args.length>0){
-        
-        Path fileName = Path.of(args[0]);
-        System.out.println(fileName);
-        String content = Files.readString(fileName);
-        if(content.length()>0){
-        ArrayList<String> links = getLinks(content);
-	    System.out.println(links);
-        }
-        else{
-            System.out.println("Provided file is an empty file");
-        }
-        }
-        else{
-            System.out.println("Please provide file as input");
+        if (args.length > 0) {
+            Path fileName = Path.of(args[0]);
+            String content = Files.readString(fileName);
+            ArrayList<String> links = getLinks(content);
+            System.out.println(links);
+        } else {
+            System.out.println("Put an file as an argument please!");
         }
     }
 }

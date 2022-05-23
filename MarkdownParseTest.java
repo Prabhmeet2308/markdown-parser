@@ -26,21 +26,14 @@ public class MarkdownParseTest {
 
     
 
-    @Test
-    public void getLinksTestthree() throws IOException { 
-        Path fileName = Path.of("myfile.md");
-        String content = Files.readString(fileName);
-        ArrayList<String> links = MarkdownParse.getLinks(content);
-        List<String> expected = List.of("(an-image.jpeg","a-link.html");
-        assertEquals(expected, links);
-    }
+   
 
     @Test
     public void getLinksSnippetOne() throws IOException { 
         Path fileName = Path.of("snippet-1.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
-        List<String> expected = List.of("60%google.com");
+        List<String> expected = List.of("`google.com");
         assertEquals(expected, links);
     }
 
